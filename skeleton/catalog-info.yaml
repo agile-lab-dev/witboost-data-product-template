@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ${{values.name | dump}}
+  description: ${{values.description | dump}}
+  annotations:
+    gitlab.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: dataproduct
+  lifecycle: experimental
+  owner: ${{values.owner | dump}}
+  domain: ${{values.domain | dump}}
+  mesh:
+    name: ${{ values.name | dump}}
+    owner: ${{values.owner | dump}}
+    environment: ${{ values.environment | dump}}
+    version: ${{ values.version | dump}}
+    consumes: []

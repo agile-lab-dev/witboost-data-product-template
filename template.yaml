@@ -1,0 +1,106 @@
+apiVersion: backstage.io/v1beta2
+kind: Template
+metadata:
+  name: dataproduct-template
+  title: Data Product Template
+  description: Create a repository containing the definition of a Data Product
+  tags:
+    - data-product
+spec:
+  owner: agilelab
+  type: dataproduct
+  
+  parameters:
+    - title: Data Product details
+      required:
+        - name
+        - description
+        - domain
+        - version
+        - environment
+        - owner
+      properties:
+        name:
+          title: Data Product name
+          type: string
+          description: the Data Product name
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this Data Product is for.
+        domain:
+          title: Domain
+          type: string
+          description: the Domain of the Data Product
+          ui:field: EntityPicker
+          ui:options:
+            allowedKinds: 
+              - Domain
+        version:
+          title: Version
+          type: string
+          description: the version of the Data Product
+          default: "0.0.0"
+        environment:
+          title: Environment
+          type: string
+          description: the Environment to which this Data Product will be deployed
+          enum:
+            - develop
+            - qa
+            - prod
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the Data Product
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds: 
+              - Group
+    - title: Choose a location  
+      required:
+        - repoUrl
+      properties: 
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - gitlab.com
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        copyWithoutRender:
+          - .gitlab-ci.yml
+        values:
+          domain: '{{ parameters.domain }}'
+          name: '{{ parameters.name }}'
+          environment: '{{ parameters.environment }}'
+          version: '{{ parameters.version }}'
+          destination: '{{ parseRepoUrl parameters.repoUrl }}'
+          description: '{{ parameters.description }}'
+          owner: '{{ parameters.owner }}'
+
+    - id: publish
+      name: Publish
+      action: publish:gitlab
+      input:
+        allowedHosts: ['gitlab.com']
+        description: 'This is {{ parameters.name }}'
+        repoUrl: '{{ parameters.repoUrl }}'
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: '{{ steps.publish.output.repoContentsUrl }}'
+        catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+    remoteUrl: '{{ steps.publish.output.remoteUrl }}'
+    entityRef: '{{ steps.register.output.entityRef }}'
