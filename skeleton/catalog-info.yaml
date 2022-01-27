@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: ${{values.name | dump}}
+  name: ${{values.name + "-" + values.version}}
   description: ${{values.description | dump}}
   annotations:
     gitlab.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
@@ -12,8 +12,14 @@ spec:
   owner: ${{values.owner | dump}}
   domain: ${{values.domain | dump}}
   mesh:
-    name: ${{ values.name | dump}}
-    owner: ${{values.owner | dump}}
-    environment: ${{ values.environment | dump}}
+    id: ${{values.domain + "." + values.name + "." + values.version}}
     version: ${{ values.version | dump}}
-    consumes: []
+    email: ${{ values.email | dump }}
+    fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
+    displayName: ${{ values.displayName | dump }}
+    informationSLA: ${{ values.informationSLA | dump }}
+    status: ${{ values.status | dump }}
+    maturity: ${{ values.maturity | dump }}
+    billing: {}
+    tags: []
+    specific: {}

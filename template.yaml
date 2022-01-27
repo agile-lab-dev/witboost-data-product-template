@@ -17,13 +17,21 @@ spec:
         - description
         - domain
         - version
-        - environment
         - owner
+        - email
       properties:
         name:
           title: Data Product name
           type: string
           description: the Data Product name
+        fullyQualifiedName:
+          title: Fully Qualified Name
+          type: string
+          description: Human-readable that uniquely identifies an entity
+        displayName:
+          title: Display Name
+          type: string
+          description: Optional name used for display purposes
         description:
           title: Description
           type: string
@@ -41,14 +49,6 @@ spec:
           type: string
           description: the version of the Data Product
           default: "0.0.0"
-        environment:
-          title: Environment
-          type: string
-          description: the Environment to which this Data Product will be deployed
-          enum:
-            - develop
-            - qa
-            - prod
         owner:
           title: Owner
           type: string
@@ -57,6 +57,29 @@ spec:
           ui:options:
             allowedKinds: 
               - Group
+        email:
+          title: Contact email
+          type: string
+          description:  Point of contact
+        informationSLA: 
+          title: InformationSLA
+          type: string
+          description: Describe what SLA the DP team is providing to answer additional information requests about the DP
+        status: 
+          title: Status
+          type: string
+          description: status of this version of the DP
+          enum:
+            - Draft
+            - Published
+            - Retired
+        maturity:
+          title: Maturity
+          type: string
+          description: Understand if it is a tactical solution or not
+          enum:
+            - Tactical
+            - Strategic
     - title: Choose a location  
       required:
         - repoUrl
@@ -80,12 +103,16 @@ spec:
         values:
           domain: '{{ parameters.domain }}'
           name: '{{ parameters.name }}'
-          environment: '{{ parameters.environment }}'
           version: '{{ parameters.version }}'
           destination: '{{ parseRepoUrl parameters.repoUrl }}'
           description: '{{ parameters.description }}'
           owner: '{{ parameters.owner }}'
-
+          email: '{{ parameters.email }}'
+          fullyQualifiedName: '{{ parameters.fullyQualifiedName }}'
+          displayName: '{{ parameters.displayName }}'
+          informationSLA: '{{ parameters.informationSLA }}'
+          status: '{{ parameters.status }}'
+          maturity: '{{ parameters.maturity }}'
     - id: publish
       name: Publish
       action: publish:gitlab
