@@ -1,24 +1,23 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: ${{values.name + "-" + values.version}}
-  description: ${{values.description | dump}}
+  name: ${{ values.name + "-" + "0" }}
+  description: ${{ values.description | dump }}
   annotations:
-    gitlab.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
+    gitlab.com/project-slug: ${{ values.destination.owner + "/" + values.destination.repo }}
     backstage.io/techdocs-ref: dir:.
 spec:
   type: dataproduct
   lifecycle: experimental
-  owner: ${{values.owner | dump}}
-  domain: ${{values.domain | dump}}
+  owner: ${{ values.owner | dump }}
+  domain: ${{ values.domain | dump }}
   mesh:
-    id: ${{values.domain + "." + values.name + "." + values.version}}
-    version: ${{ values.version | dump}}
+    id: ${{ values.domain + "." + values.name + "." + "0.0.0" }}
     email: ${{ values.email | dump }}
+    version: 0.0.0
     fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
     displayName: ${{ values.displayName | dump }}
     informationSLA: ${{ values.informationSLA | dump }}
-    status: ${{ values.status | dump }}
     maturity: ${{ values.maturity | dump }}
     billing: {}
     tags: []

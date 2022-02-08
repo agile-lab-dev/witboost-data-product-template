@@ -16,7 +16,6 @@ spec:
         - name
         - description
         - domain
-        - version
         - owner
         - email
       properties:
@@ -44,11 +43,6 @@ spec:
           ui:options:
             allowedKinds: 
               - Domain
-        version:
-          title: Version
-          type: string
-          description: the version of the Data Product
-          default: "0.0.0"
         owner:
           title: Owner
           type: string
@@ -65,14 +59,6 @@ spec:
           title: InformationSLA
           type: string
           description: Describe what SLA the DP team is providing to answer additional information requests about the DP
-        status: 
-          title: Status
-          type: string
-          description: status of this version of the DP
-          enum:
-            - Draft
-            - Published
-            - Retired
         maturity:
           title: Maturity
           type: string
@@ -103,7 +89,6 @@ spec:
         values:
           domain: '{{ parameters.domain }}'
           name: '{{ parameters.name }}'
-          version: '{{ parameters.version }}'
           destination: '{{ parseRepoUrl parameters.repoUrl }}'
           description: '{{ parameters.description }}'
           owner: '{{ parameters.owner }}'
@@ -111,7 +96,6 @@ spec:
           fullyQualifiedName: '{{ parameters.fullyQualifiedName }}'
           displayName: '{{ parameters.displayName }}'
           informationSLA: '{{ parameters.informationSLA }}'
-          status: '{{ parameters.status }}'
           maturity: '{{ parameters.maturity }}'
     - id: publish
       name: Publish
