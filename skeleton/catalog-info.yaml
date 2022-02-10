@@ -12,7 +12,6 @@ spec:
   owner: ${{ values.owner | dump }}
   domain: ${{ values.domain | dump }}
   mesh:
-    id: ${{ values.domain + "." + values.name + "." + "0.0.0" }}
     email: ${{ values.email | dump }}
     version: 0.0.0
     fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
