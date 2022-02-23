@@ -77,6 +77,11 @@ spec:
           ui:options:
             allowedHosts:
               - gitlab.com
+        rootDirectory:
+          title: Root Directory
+          type: string
+          description:  Path that will be used as the repository root for this component
+          default: .
 
   steps:
     - id: template
@@ -84,6 +89,7 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
+        targetPath: '{{ parameters.rootDirectory }}'
         copyWithoutRender:
           - .gitlab-ci.yml
         values:
@@ -99,18 +105,20 @@ spec:
           maturity: '{{ parameters.maturity }}'
     - id: publish
       name: Publish
-      action: publish:gitlab
+      action: witboostMeshComponent:publish:gitlab
       input:
         allowedHosts: ['gitlab.com']
         description: 'This is {{ parameters.name }}'
         repoUrl: '{{ parameters.repoUrl }}'
+        rootDirectory: '{{ parameters.rootDirectory }}'
+        dataproduct: '{{ parameters.dataproduct }}'
 
     - id: register
       name: Register
       action: catalog:register
       input:
         repoContentsUrl: '{{ steps.publish.output.repoContentsUrl }}'
-        catalogInfoPath: '/catalog-info.yaml'
+        catalogInfoPath: '/{{ parameters.rootDirectory }}/catalog-info.yaml'
 
   output:
     remoteUrl: '{{ steps.publish.output.remoteUrl }}'
