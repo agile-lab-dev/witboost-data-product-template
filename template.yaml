@@ -44,14 +44,22 @@ spec:
           ui:options:
             allowedKinds: 
               - Domain
-        owner:
-          title: Owner
+        developmentGroup:
+          title: DevelopmentGroup
           type: string
-          description: Owner of the Data Product
+          description: Dataproduct development group
           ui:field: OwnerPicker
           ui:options:
             allowedKinds: 
               - Group
+        dataProductOwner:
+          title: DataProductOwner
+          type: string
+          description: User who owns of the dataproduct
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds: 
+              - User      
         email:
           title: Contact email
           type: string
