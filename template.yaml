@@ -13,24 +13,25 @@ spec:
   parameters:
     - title: Data Product details
       required:
-        - name
+        - identifier
         - description
         - domain
         - owner
         - email
+        - name
       properties:
-        name:
-          title: Data Product name
+        identifier:
+          title: Identifier
           type: string
-          description: the Data Product name
+          description: A unique identifier for the entity inside the domain. It will not be editable aftrer creation and is expected to be a string that is sequences of [a-zA-Z0-9] separated by any of [-_], at most 63 characters in total. An example could be 'finance-customer'
         fullyQualifiedName:
           title: Fully Qualified Name
           type: string
           description: Human-readable that uniquely identifies an entity
-        displayName:
-          title: Display Name
+        name:
+          title: Name
           type: string
-          description: Optional name used for display purposes
+          description: Required name used for display purposes
         description:
           title: Description
           type: string
@@ -94,13 +95,13 @@ spec:
           - .gitlab-ci.yml
         values:
           domain: '{{ parameters.domain }}'
-          name: '{{ parameters.name }}'
+          identifier: '{{ parameters.identifier }}'
           destination: '{{ parseRepoUrl parameters.repoUrl }}'
           description: '{{ parameters.description }}'
           owner: '{{ parameters.owner }}'
           email: '{{ parameters.email }}'
           fullyQualifiedName: '{{ parameters.fullyQualifiedName }}'
-          displayName: '{{ parameters.displayName }}'
+          name: '{{ parameters.name }}'
           informationSLA: '{{ parameters.informationSLA }}'
           maturity: '{{ parameters.maturity }}'
     - id: publish

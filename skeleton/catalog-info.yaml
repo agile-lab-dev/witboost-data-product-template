@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: ${{ values['domain'].slice(7) + "-" + values.name + "-" + "0" }}
+  name: ${{ values['domain'].slice(7) + "." + values.identifier + "." + "0" }}
   description: ${{ values.description | dump }}
   annotations:
     gitlab.com/project-slug: ${{ values.destination.owner + "/" + values.destination.repo }}
@@ -15,7 +15,7 @@ spec:
     email: ${{ values.email | dump }}
     version: 0.0.0
     fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
-    displayName: ${{ values.displayName | dump }}
+    name: ${{ values.name | dump }}
     informationSLA: ${{ values.informationSLA | dump }}
     maturity: ${{ values.maturity | dump }}
     billing: {}
