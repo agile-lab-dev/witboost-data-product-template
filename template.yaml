@@ -16,7 +16,8 @@ spec:
         - identifier
         - description
         - domain
-        - owner
+        - dataProductOwner
+        - developmentGroup
         - email
         - name
       properties:
