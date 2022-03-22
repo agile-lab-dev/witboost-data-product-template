@@ -2,14 +2,14 @@ apiVersion: backstage.io/v1beta2
 kind: Template
 metadata:
   name: dataproduct-template
-  title: Data Product Template
-  description: Create a repository containing the definition of a Data Product
+  title: Data Product
+  description: Template definition of a Data Product
   tags:
     - data-product
 spec:
   owner: agilelab
   type: dataproduct
-  
+
   parameters:
     - title: Data Product details
       required:
@@ -24,11 +24,11 @@ spec:
         identifier:
           title: Identifier
           type: string
-          description: A unique identifier for the entity inside the domain. It will not be editable aftrer creation and is expected to be a string that is sequences of [a-zA-Z0-9] separated by any of [-_], at most 63 characters in total. An example could be 'finance-customer'
+          description: A unique identifier for the entity inside the domain. It will not be editable after creation and is expected to be a string that is sequences of [a-zA-Z] separated by any of [-_]. An example could be 'customer' or 'invoice'.
         fullyQualifiedName:
           title: Fully Qualified Name
           type: string
-          description: Human-readable that uniquely identifies an entity
+          description: Human-readable name that identifies the Data Product
         name:
           title: Name
           type: string
@@ -36,50 +36,50 @@ spec:
         description:
           title: Description
           type: string
-          description: Help others understand what this Data Product is for.
+          description: Detailed description about what functional area this DP is representing, what purpose has, and business related information
         domain:
           title: Domain
           type: string
           description: the Domain of the Data Product
           ui:field: EntityPicker
           ui:options:
-            allowedKinds: 
+            allowedKinds:
               - Domain
         developmentGroup:
-          title: DevelopmentGroup
+          title: Development Group
           type: string
-          description: Dataproduct development group
+          description: Data Product development group. This will be the group of developers with access to the Data Product repositories
           ui:field: OwnerPicker
           ui:options:
-            allowedKinds: 
+            allowedKinds:
               - Group
         dataProductOwner:
-          title: DataProductOwner
+          title: Data Product Owner
           type: string
-          description: User who owns of the dataproduct
+          description: User who owns the Data Product
           ui:field: OwnerPicker
           ui:options:
-            allowedKinds: 
-              - User      
+            allowedKinds:
+              - User
         email:
           title: Contact email
           type: string
-          description:  Point of contact
-        informationSLA: 
-          title: InformationSLA
+          description: Point of contact, it could be the owner or a distribution list, but must be reliable and responsive
+        informationSLA:
+          title: Information SLA
           type: string
-          description: Describe what SLA the DP team is providing to answer additional information requests about the DP
+          description: Describe what SLA the DP team is providing to answer additional information requests about the Data Product
         maturity:
           title: Maturity
           type: string
-          description: Understand if it is a tactical solution or not
+          description: Let the consumer understand if it is a tactical solution or not. Could be really useful during migration from DWH or Data Lake.
           enum:
             - Tactical
             - Strategic
-    - title: Choose a location  
+    - title: Choose a location
       required:
         - repoUrl
-      properties: 
+      properties:
         repoUrl:
           title: Repository Location
           type: string
@@ -90,7 +90,7 @@ spec:
         rootDirectory:
           title: Root Directory
           type: string
-          description:  Path that will be used as the repository root for this component
+          description: Path that will be used as the repository root for this Data Product
           default: .
 
   steps:
