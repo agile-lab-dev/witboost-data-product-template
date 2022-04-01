@@ -24,7 +24,8 @@ spec:
         identifier:
           title: Identifier
           type: string
-          description: A unique identifier for the entity inside the domain. It will not be editable after creation and is expected to be a string that is sequences of [a-zA-Z] separated by any of [-_]. An example could be 'customer' or 'invoice'.
+          ui:field: IdentifierPicker
+          description: A unique uneditable identifier for the entity inside the domain. It is expected to be a sequence of [a-zA-Z] letters separated by any of [-_] symbols. An example could be 'customer' or 'invoice-finance'.
         fullyQualifiedName:
           title: Fully Qualified Name
           type: string
@@ -32,7 +33,7 @@ spec:
         name:
           title: Name
           type: string
-          description: Required name used for display purposes
+          description: A name used for display purposes (required)
         description:
           title: Description
           type: string
@@ -43,6 +44,7 @@ spec:
           description: the Domain of the Data Product
           ui:field: EntityPicker
           ui:options:
+            allowArbitraryValues: false
             allowedKinds:
               - Domain
         developmentGroup:
@@ -51,6 +53,7 @@ spec:
           description: Data Product development group. This will be the group of developers with access to the Data Product repositories
           ui:field: OwnerPicker
           ui:options:
+            allowArbitraryValues: false
             allowedKinds:
               - Group
         dataProductOwner:
@@ -59,6 +62,7 @@ spec:
           description: User who owns the Data Product
           ui:field: OwnerPicker
           ui:options:
+            allowArbitraryValues: false
             allowedKinds:
               - User
         email:
