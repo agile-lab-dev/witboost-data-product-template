@@ -51,7 +51,7 @@ spec:
           title: Development Group
           type: string
           description: Data Product development group. This will be the group of developers with access to the Data Product repositories
-          ui:field: OwnerPicker
+          ui:field: EntityPicker
           ui:options:
             allowArbitraryValues: false
             allowedKinds:
@@ -60,7 +60,7 @@ spec:
           title: Data Product Owner
           type: string
           description: User who owns the Data Product
-          ui:field: OwnerPicker
+          ui:field: EntityPicker
           ui:options:
             allowArbitraryValues: false
             allowedKinds:
