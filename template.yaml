@@ -68,6 +68,7 @@ spec:
         email:
           title: Contact email
           type: string
+          format: email
           description: Point of contact, it could be the owner or a distribution list, but must be reliable and responsive
         informationSLA:
           title: Information SLA
