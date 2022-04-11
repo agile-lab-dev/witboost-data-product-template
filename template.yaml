@@ -119,6 +119,9 @@ spec:
           name: '{{ parameters.name }}'
           informationSLA: '{{ parameters.informationSLA }}'
           maturity: '{{ parameters.maturity }}'
+          useCaseTemplateID: '{{ parameters.useCaseTemplateID }}'
+          infrastructureTemplateID: cdp-aws-dataproduct-provisioner.1
+          
     - id: publish
       name: Publish
       action: witboostMeshComponent:publish:gitlab
