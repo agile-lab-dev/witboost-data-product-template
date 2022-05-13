@@ -21,23 +21,10 @@ spec:
         - email
         - name
       properties:
-        identifier:
-          title: Identifier
-          type: string
-          ui:field: IdentifierPicker
-          description: A unique uneditable identifier for the entity inside the domain. It is expected to be a sequence of [a-zA-Z] letters separated by any of [-_] symbols. An example could be 'customer' or 'invoice-finance'.
-        fullyQualifiedName:
-          title: Fully Qualified Name
-          type: string
-          description: Human-readable name that identifies the Data Product
         name:
           title: Name
           type: string
           description: A name used for display purposes (required)
-        description:
-          title: Description
-          type: string
-          description: Detailed description about what functional area this DP is representing, what purpose has, and business related information
         domain:
           title: Domain
           type: string
@@ -47,6 +34,21 @@ spec:
             allowArbitraryValues: false
             allowedKinds:
               - Domain
+        identifier:
+          title: Identifier
+          type: string
+          ui:field: IdentifierPicker
+          ui:options:
+            allowArbitraryValues: false
+          description: A unique uneditable identifier for the entity inside the domain. It is expected to be a sequence of [a-zA-Z] letters separated by any of [-_] symbols. An example could be 'customer' or 'invoice-finance'.
+        fullyQualifiedName:
+          title: Fully Qualified Name
+          type: string
+          description: Human-readable name that identifies the Data Product
+        description:
+          title: Description
+          type: string
+          description: Detailed description about what functional area this DP is representing, what purpose has, and business related information
         developmentGroup:
           title: Development Group
           type: string

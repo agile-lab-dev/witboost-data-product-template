@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: ${{ values['domain'].slice(7) + "." + values.identifier + "." + "0" }}
+  name: ${{ values.identifier  }}
   description: ${{ values.description | dump }}
   annotations:
     gitlab.com/project-slug: ${{ values.destination.owner + "/" + values.destination.repo }}
