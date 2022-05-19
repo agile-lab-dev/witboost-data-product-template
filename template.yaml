@@ -132,7 +132,7 @@ spec:
         description: 'This is {{ parameters.name }}'
         repoUrl: '{{ parameters.repoUrl }}'
         rootDirectory: '{{ parameters.rootDirectory }}'
-        dataproduct: '{{ parameters.dataproduct }}'
+        dataproduct: '{{ parameters.name }}'
 
     - id: register
       name: Register
