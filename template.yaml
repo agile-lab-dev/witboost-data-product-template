@@ -1,4 +1,4 @@
-apiVersion: backstage.io/v1beta2
+apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: dataproduct-template
@@ -106,22 +106,22 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
-        targetPath: '{{ parameters.rootDirectory }}'
+        targetPath: '${{ parameters.rootDirectory }}'
         copyWithoutRender:
           - .gitlab-ci.yml
         values:
-          domain: '{{ parameters.domain }}'
-          identifier: '{{ parameters.identifier }}'
-          destination: '{{ parseRepoUrl parameters.repoUrl }}'
-          description: '{{ parameters.description }}'
-          dataProductOwner: '{{ parameters.dataProductOwner }}'
-          developmentGroup: '{{ parameters.developmentGroup }}'
-          email: '{{ parameters.email }}'
-          fullyQualifiedName: '{{ parameters.fullyQualifiedName }}'
-          name: '{{ parameters.name }}'
-          informationSLA: '{{ parameters.informationSLA }}'
-          maturity: '{{ parameters.maturity }}'
-          useCaseTemplateID: '{{ parameters.useCaseTemplateID }}'
+          domain: '${{ parameters.domain }}'
+          identifier: '${{ parameters.identifier }}'
+          destination: '${{ parameters.repoUrl | parseRepoUrl }}'
+          description: '${{ parameters.description }}'
+          dataProductOwner: '${{ parameters.dataProductOwner }}'
+          developmentGroup: '${{ parameters.developmentGroup }}'
+          email: '${{ parameters.email }}'
+          fullyQualifiedName: '${{ parameters.fullyQualifiedName }}'
+          name: '${{ parameters.name }}'
+          informationSLA: '${{ parameters.informationSLA }}'
+          maturity: '${{ parameters.maturity }}'
+          useCaseTemplateID: '${{ parameters.useCaseTemplateID }}'
           infrastructureTemplateID: cdp-aws-dataproduct-provisioner.1
           
     - id: publish
@@ -129,18 +129,22 @@ spec:
       action: witboostMeshComponent:publish:gitlab
       input:
         allowedHosts: ['gitlab.com']
-        description: 'This is {{ parameters.name }}'
-        repoUrl: '{{ parameters.repoUrl }}'
-        rootDirectory: '{{ parameters.rootDirectory }}'
-        dataproduct: '{{ parameters.name }}'
+        description: 'This is ${{ parameters.name }}'
+        repoUrl: '${{ parameters.repoUrl }}'
+        rootDirectory: '${{ parameters.rootDirectory }}'
+        dataproduct: '${{ parameters.name }}'
 
     - id: register
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: '{{ steps.publish.output.repoContentsUrl }}'
-        catalogInfoPath: '/{{ parameters.rootDirectory }}/catalog-info.yaml'
+        repoContentsUrl: '${{ steps.publish.output.repoContentsUrl }}'
+        catalogInfoPath: '/${{ parameters.rootDirectory }}/catalog-info.yaml'
 
   output:
-    remoteUrl: '{{ steps.publish.output.remoteUrl }}'
-    entityRef: '{{ steps.register.output.entityRef }}'
+    links:
+      - title: Repository
+        url: '${{ steps.publish.output.remoteUrl }}'
+      - title: Open in catalog
+        icon: catalog
+        entityRef: '${{ steps.register.output.entityRef }}'
