@@ -19,8 +19,8 @@ spec:
     name: ${{ values.name | dump }}
     informationSLA: ${{ values.informationSLA | dump }}
     maturity: ${{ values.maturity | dump }}
-    useCaseTemplateId: ${{ values.useCaseTemplateID | dump }}
-    infrastructureTemplateId: ${{ values.infrastructureTemplateID | dump }}
+    useCaseTemplateId: ${{ values.useCaseTemplateId | dump }}
+    infrastructureTemplateId: ${{ values.infrastructureTemplateId | dump }}
     billing: {}
     tags: []
     specific: {}
