@@ -122,7 +122,7 @@ spec:
           informationSLA: '${{ parameters.informationSLA }}'
           maturity: '${{ parameters.maturity }}'
           useCaseTemplateId: urn:dmb:utm:dataproduct-template:0.0.0
-          infrastructureTemplateId: urn:dmb:itm:cdp-aws-dataproduct-provisioner:1
+          infrastructureTemplateId: urn:dmb:itm:dataproduct-provisioner:1
           useCaseTemplateVersion: 0.0.0
            
     - id: publish
