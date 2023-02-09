@@ -9,10 +9,11 @@ metadata:
 spec:
   type: dataproduct
   lifecycle: experimental
-  owner: ${{ values.developmentGroup | dump }}
+  owner: ${{ values.dataProductOnwer }}
   domain: ${{ values.domain | dump }}
   mesh:
     dataProductOwner: ${{ values.dataProductOwner }}
+    developmentGroup: ${{ values.developmentGroup | dump }}
     email: ${{ values.email | dump }}
     version: 0.0.0
     fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
