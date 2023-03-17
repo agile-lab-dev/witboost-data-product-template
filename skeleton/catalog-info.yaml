@@ -9,7 +9,7 @@ metadata:
 spec:
   type: dataproduct
   lifecycle: experimental
-  owner: ${{ values.dataProductOnwer }}
+  owner: ${{ values.dataProductOwner }}
   domain: ${{ values.domain | dump }}
   mesh:
     dataProductOwner: ${{ values.dataProductOwner }}
