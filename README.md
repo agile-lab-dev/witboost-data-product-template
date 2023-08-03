@@ -8,7 +8,7 @@ Designed by [Agile Lab](https://www.agilelab.it/), witboost is a versatile platf
 
 This repository is part of our [Starter Kit](https://github.com/agile-lab-dev/witboost-starter-kit) meant to showcase witboost's integration capabilities and provide a "batteries-included" product.
 
-# Snowflake Output Port Template
+# Data Product Template
 
 - [Overview](#overview)
 - [Usage](#usage)
