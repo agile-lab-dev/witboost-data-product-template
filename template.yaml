@@ -40,7 +40,7 @@ spec:
           ui:field: IdentifierPicker
           ui:options:
             allowArbitraryValues: false
-          description: A unique uneditable identifier for the entity inside the domain. It is expected to be a sequence of [a-zA-Z] letters separated by any of [-_] symbols. An example could be 'customer' or 'invoice-finance'.
+          description: A unique uneditable identifier for the entity inside the domain. It is expected to be a sequence of [a-zA-Z0-9] letters and digits separated by any of [-_] symbols. An example could be 'customer' or 'invoice-finance'.
         fullyQualifiedName:
           title: Fully Qualified Name
           type: string
