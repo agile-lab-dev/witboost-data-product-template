@@ -4,6 +4,8 @@ metadata:
   name: dataproduct-template
   title: Data Product
   description: Template definition of a Data Product
+  mesh:
+    icon: https://cdn-icons-png.flaticon.com/512/589/589598.png
   tags:
     - data-product
 spec:
