@@ -1,0 +1,117 @@
+# it is important to use this apiVersion
+apiVersion: witboost.com/v1
+kind: EditTemplate
+metadata:
+  name: edit-dataproduct-template
+  title: Edit Data Product
+  description: Edit a Data Product
+  tags:
+    - edit
+    - data-product
+spec:
+  owner: agile_lab
+  useCaseTemplateId:
+    - urn:dmb:utm:dataproduct-template:0.0.0
+  parameters:
+    - title: Update Data Product
+      description: |
+        This wizard will allow you to edit the metadata for a previously created Data Product.
+        
+        Most metadata is editable but some (like the name, domain, etc) are not; their fields will be read-only.
+        
+        Some of the files in the component's repository cannot be updated by this wizard, namely:
+        - **Documentation**: `README.md`, `docs/index.md`, etc
+        - **CI/CD**: `.gitlab-ci-yaml`
+        You need to take care of updating these yourself, as given their nature it's hard to do automatically and they are often edited manually after the component's creation.
+
+    - title: Update Data Product metadata
+      required:
+        - description
+        - email
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Not editable. The name of the Data Product.
+          ui:disabled: true
+        domain:
+          title: Domain
+          type: string
+          description: Not editable. Domain of the Data Product.
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            allowedKinds:
+              - Domain
+          ui:disabled: true
+        fullyQualifiedName:
+          title: Fully Qualified Name
+          type: string
+          description: Human-readable name that identifies the Data Product.
+        description:
+          title: Description
+          type: string
+          description: Required. Detailed description about what functional area this DP is representing, what purpose has, and business related information.
+        developmentGroup:
+          title: Development Group
+          type: string
+          description: Not editable. Data Product development group. This will be the group of developers with access to the Data Product repositories.
+          ui:field: EntityPicker
+          ui:disabled: true
+          ui:options:
+            allowArbitraryValues: false
+            allowedKinds:
+              - Group
+        dataProductOwner:
+          title: Data Product Owner
+          type: string
+          description: Not editable. User who owns the Data Product.
+          ui:disabled: true
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            allowedKinds:
+              - User
+        tags:
+          title: Tags
+          type: array
+          description: Tags for the Data Product.
+          default: []
+          items:
+            type: string
+        email:
+          title: Contact email
+          type: string
+          format: email
+          description: Point of contact, it could be the owner or a distribution list, but must be reliable and responsive.
+        informationSLA:
+          title: Information SLA
+          type: string
+          description: Describe what SLA the DP team is providing to answer additional information requests about the Data Product.
+        maturity:
+          title: Maturity
+          type: string
+          description: Let the consumer understand if it is a tactical solution or not. Could be really useful during migration from DWH or Data Lake.
+          enum:
+            - Tactical
+            - Strategic
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./edit-skeleton
+        targetPath: .
+        values:
+          name: '${{ parameters.name }}'
+          domain: '${{ parameters.domain }}'
+          fullyQualifiedName: '${{ parameters.fullyQualifiedName }}'
+          description: '${{ parameters.description }}'
+          developmentGroup: '${{ parameters.developmentGroup }}'
+          dataProductOwner: '${{ parameters.dataProductOwner }}'
+          tags: '${{ parameters.tags }}'
+          email: '${{ parameters.email }}'
+          informationSLA: '${{ parameters.informationSLA }}'
+          maturity: '${{ parameters.maturity }}'

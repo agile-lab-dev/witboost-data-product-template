@@ -13,7 +13,7 @@ spec:
   domain: ${{ values.domain | dump }}
   mesh:
     dataProductOwner: ${{ values.dataProductOwner }}
-    developmentGroup: ${{ values.developmentGroup | dump }}
+    developmentGroup: ${{ values.developmentGroup }}
     email: ${{ values.email | dump }}
     version: 0.0.0
     fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
@@ -23,5 +23,9 @@ spec:
     useCaseTemplateId: ${{ values.useCaseTemplateId | dump }}
     infrastructureTemplateId: ${{ values.infrastructureTemplateId | dump }}
     billing: {}
-    tags: []
+    tags: {% if values.tags | length > 0 %}{% for i in values.tags %}
+      - tagFQN: ${{ i }}
+        source: Tag
+        labelType: Manual
+        state: Confirmed{% endfor %}{% else %}[]{% endif %}
     specific: {}
