@@ -19,7 +19,7 @@ spec:
         - description
         - domain
         - dataProductOwner
-        - developmentGroup
+        - devGroup
         - email
         - name
       properties:
@@ -51,7 +51,7 @@ spec:
           title: Description
           type: string
           description: Detailed description about what functional area this DP is representing, what purpose has, and business related information
-        developmentGroup:
+        devGroup:
           title: Development Group
           type: string
           description: Data Product development group. This will be the group of developers with access to the Data Product repositories
@@ -107,7 +107,7 @@ spec:
           identifier: '${{ parameters.identifier }}'
           description: '${{ parameters.description }}'
           dataProductOwner: '${{ parameters.dataProductOwner }}'
-          developmentGroup: '${{ parameters.developmentGroup }}'
+          devGroup: '${{ parameters.devGroup }}'
           tags: '${{ parameters.tags }}'
           email: '${{ parameters.email }}'
           fullyQualifiedName: '${{ parameters.fullyQualifiedName }}'
@@ -115,6 +115,7 @@ spec:
           informationSLA: '${{ parameters.informationSLA }}'
           maturity: '${{ parameters.maturity }}'
           repoUrl: 'gitlab.com?owner=AgileDmbSandbox%2F{{orgname}}%2Fmesh.repository%2F${{ parameters.domain | replace(r/domain:| |-/, "") }}%2F${{ parameters.name.split(" ") | join("") | lower }}&repo=${{ parameters.name.split(" ") | join("") | lower }}'
+          rootDirectory: '.'
           useCaseTemplateId: urn:dmb:utm:dataproduct-template:0.0.0
           infrastructureTemplateId: urn:dmb:itm:dataproduct-provisioner:1
           useCaseTemplateVersion: 0.0.0
