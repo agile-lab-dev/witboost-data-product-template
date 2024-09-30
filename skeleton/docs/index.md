@@ -6,7 +6,7 @@
 | **Domain**              | ${{ values.domain }}           |
 | **_Identifier_**        | ${{ values.identifier }}       |
 | **Description**         | ${{ values.description }}      |
-| **Development Group**   | ${{ values.developmentGroup }} |
+| **Development Group**   | ${{ values.devGroup }} |
 | **Data Product Owner**  | ${{ values.dataProductOwner }} |
 | **Contact Email**       | ${{ values.email }}            |
 | **Information SLA**     | ${{ values.informationSLA }}   |

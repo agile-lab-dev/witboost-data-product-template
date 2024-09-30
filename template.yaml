@@ -8,6 +8,8 @@ metadata:
     icon: https://cdn-icons-png.flaticon.com/512/589/589598.png
   tags:
     - data-product
+  annotations:
+    backstage.io/techdocs-ref: dir:.
 spec:
   generates: systemtype:default/dataproduct
   owner: agilelab
@@ -27,13 +29,11 @@ spec:
           title: Name
           type: string
           description: The name of the Data Product.
-
         domainTypeRef:
           title: domainTypeRef
           type: string
           default: domaintype:default/business-domain
           ui:widget: hidden
-
         domain:
           title: Domain
           type: string
@@ -130,10 +130,7 @@ spec:
           name: ${{ parameters.name }}
           informationSLA: ${{ parameters.informationSLA }}
           maturity: ${{ parameters.maturity }}
-          repoUrl: gitlab.com?owner=AgileDmbSandbox%2F{{orgname}}%2Fmesh.repository%2F${{
-            parameters.domain | replace(r/domain:| |-/, "") }}%2F${{
-            parameters.name.split(" ") | join("") | lower }}&repo=${{
-            parameters.name.split(" ") | join("") | lower }}
+          repoUrl: &repoUrl gitlab.com?owner=AgileDmbSandbox%2F{{orgname}}%2Fmesh.repository%2F${{parameters.domain | replace(r/domain:| |-/, "") }}%2F${{parameters.name.split(" ") | join("") | lower }}&repo=${{parameters.name.split(" ") | join("") | lower }}
           rootDirectory: .
           useCaseTemplateId: urn:dmb:utm:dataproduct-template:0.0.0
           infrastructureTemplateId: urn:dmb:itm:dataproduct-provisioner:1
@@ -145,10 +142,7 @@ spec:
         allowedHosts:
           - gitlab.com
         description: This is ${{ parameters.name }}
-        repoUrl: gitlab.com?owner=AgileDmbSandbox%2F{{orgname}}%2Fmesh.repository%2F${{
-          parameters.domain | replace(r/domain:| |-/, "") }}%2F${{
-          parameters.name.split(" ") | join("") | lower }}&repo=${{
-          parameters.name.split(" ") | join("") | lower }}
+        repoUrl: *repoUrl
         rootDirectory: .
         dataproduct: ${{ parameters.name }}
     - id: register

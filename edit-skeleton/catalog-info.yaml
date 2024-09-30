@@ -5,7 +5,7 @@ metadata:
 spec:
   type: dataproduct
   lifecycle: experimental
-  owner: ${{ values.developmentGroup | dump }}
+  owner: ${{ values.dataProductOwner }}
   mesh:
     email: ${{ values.email | dump }}
     fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}

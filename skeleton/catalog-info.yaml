@@ -4,7 +4,6 @@ metadata:
   name: ${{ values.identifier  }}
   description: ${{ values.description | dump }}
   annotations:
-    gitlab.com/project-slug: ${{ values.destination.owner + "/" + values.destination.repo }}
     backstage.io/techdocs-ref: dir:.
 spec:
   type: dataproduct

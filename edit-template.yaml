@@ -35,11 +35,19 @@ spec:
           type: string
           description: Not editable. The name of the Data Product.
           ui:disabled: true
+        domainTypeRef:
+          title: domainTypeRef
+          type: string
+          default: domaintype:default/business-domain
+          ui:widget: hidden
         domain:
           title: Domain
           type: string
           description: Not editable. Domain of the Data Product.
           ui:field: EntityPicker
+          ui:filter:
+            - fieldName: domainTypeRef
+              entityPath: relations.wb-instanceOf
           ui:options:
             allowArbitraryValues: false
             allowedKinds:
@@ -53,7 +61,7 @@ spec:
           title: Description
           type: string
           description: Required. Detailed description about what functional area this DP is representing, what purpose has, and business related information.
-        developmentGroup:
+        devGroup:
           title: Development Group
           type: string
           description: Not editable. Data Product development group. This will be the group of developers with access to the Data Product repositories.
@@ -109,7 +117,7 @@ spec:
           domain: '${{ parameters.domain }}'
           fullyQualifiedName: '${{ parameters.fullyQualifiedName }}'
           description: '${{ parameters.description }}'
-          developmentGroup: '${{ parameters.developmentGroup }}'
+          devGroup: '${{ parameters.devGroup }}'
           dataProductOwner: '${{ parameters.dataProductOwner }}'
           tags: '${{ parameters.tags }}'
           email: '${{ parameters.email }}'
