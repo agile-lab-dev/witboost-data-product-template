@@ -53,10 +53,6 @@ spec:
             allowedKinds:
               - Domain
           ui:disabled: true
-        fullyQualifiedName:
-          title: Fully Qualified Name
-          type: string
-          description: Human-readable name that identifies the Data Product.
         description:
           title: Description
           type: string
@@ -115,7 +111,6 @@ spec:
         values:
           name: '${{ parameters.name }}'
           domain: '${{ parameters.domain }}'
-          fullyQualifiedName: '${{ parameters.fullyQualifiedName }}'
           description: '${{ parameters.description }}'
           devGroup: '${{ parameters.devGroup }}'
           dataProductOwner: '${{ parameters.dataProductOwner }}'

@@ -8,7 +8,6 @@ spec:
   owner: ${{ values.dataProductOwner }}
   mesh:
     email: ${{ values.email | dump }}
-    fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
     informationSLA: ${{ values.informationSLA | dump }}
     maturity: ${{ values.maturity | dump }}
     tags: {% if values.tags | length > 0 %}{% for i in values.tags %}

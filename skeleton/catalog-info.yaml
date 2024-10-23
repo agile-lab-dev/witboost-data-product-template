@@ -1,3 +1,5 @@
+{% set dataProductMajorVersion = values.identifier.split(".")[2] %}
+
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
@@ -15,7 +17,7 @@ spec:
     devGroup: ${{ values.devGroup }}
     email: ${{ values.email | dump }}
     version: 0.0.0
-    fullyQualifiedName: ${{ values.fullyQualifiedName | dump }}
+    fullyQualifiedName: ${{ values.domainName }} - ${{ values.name }} - version ${{ dataProductMajorVersion }}
     name: ${{ values.name | dump }}
     informationSLA: ${{ values.informationSLA | dump }}
     maturity: ${{ values.maturity | dump }}
