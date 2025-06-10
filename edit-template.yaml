@@ -1,5 +1,5 @@
 # it is important to use this apiVersion
-apiVersion: witboost.com/v1
+apiVersion: witboost.com/v2
 kind: EditTemplate
 metadata:
   name: edit-dataproduct-template
@@ -101,20 +101,3 @@ spec:
             - Tactical
             - Strategic
 
-  steps:
-    - id: template
-      name: Fetch Skeleton + Template
-      action: fetch:template
-      input:
-        url: ./edit-skeleton
-        targetPath: .
-        values:
-          name: '${{ parameters.name }}'
-          domain: '${{ parameters.domain }}'
-          description: '${{ parameters.description }}'
-          devGroup: '${{ parameters.devGroup }}'
-          dataProductOwner: '${{ parameters.dataProductOwner }}'
-          tags: '${{ parameters.tags }}'
-          email: '${{ parameters.email }}'
-          informationSLA: '${{ parameters.informationSLA }}'
-          maturity: '${{ parameters.maturity }}'
